@@ -1,0 +1,54 @@
+.minigridrow {
+    display: flex;
+}
+
+.minigrid {
+    display: inline-block;
+    flex: 1;
+    border: 3px solid black;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+}
+
+
+.emptycell {
+    color: gray;
+    background-color: gray;
+}
+
+.lockedcell {
+    color: black;
+    background-color: lightgreen;
+}
+
+table {
+    margin: 1em auto;
+}
+
+td {
+    height: 64px;
+    width: 64px;
+    border: 1px solid;
+    text-align: center;
+    font-size: 64px;
+    padding: 5px;
+}
+
+td:first-child {
+    border-left: solid;
+}
+
+td:nth-child(3n) {
+    border-right: solid;
+}
+
+tr:first-child {
+    border-top: solid;
+}
+
+tr:nth-child(3n) td {
+    border-bottom: solid;
+}

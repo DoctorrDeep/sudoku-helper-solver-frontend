@@ -1,0 +1,20 @@
+FROM node:19-alpine3.16 as build
+
+WORKDIR /app
+
+COPY package.json /app/
+COPY package-lock.json /app/
+COPY src /app/src/
+COPY public /app/public/
+COPY node_modules /app/node_modules/
+
+RUN npm ci --omit=dev
+RUN npm run build
+
+FROM nginx:latest as prod
+
+COPY --from=build /app/build/ /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
