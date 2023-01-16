@@ -13,7 +13,6 @@
     display: flex;
 }
 
-
 .emptycell {
     color: gray;
     background-color: gray;
@@ -51,4 +50,13 @@ tr:first-child {
 
 tr:nth-child(3n) td {
     border-bottom: solid;
+}
+
+li {
+    font-size: 32px;
+    justify-content: right;
+}
+
+h3 {
+    font-size: 48px;
 }
