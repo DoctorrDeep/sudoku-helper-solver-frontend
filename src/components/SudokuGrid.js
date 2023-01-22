@@ -24,7 +24,7 @@ class SudokuGrid extends Component {
         this.first = true
 
         // Use axios to load a new puzzle(hardocded to easy-settings by default)
-        axios.get("http://ambardas.nl:8000/create/easy")
+        axios.get("https://ambardas.nl:8000/create/easy")
             .then(response => {
                 this.setState({ values: response.data, originalValues: cloneDeep(response.data) })
             })
@@ -51,7 +51,7 @@ class SudokuGrid extends Component {
         // Given the current state of the grid fetch the solution from the endpoint and update the grid + known solutuion
         // TODO: known solutuion i.e. solutionValues seems unnecessary. Either load it when creating the puzzle or remove it
         const wrongSolutionResponse = "No Solution found! Check the values filled in so far."
-        axios.post("http://ambardas.nl:8000/solve", this.state.values)
+        axios.post("https://ambardas.nl:8000/solve", this.state.values)
             .then(response => {
                 this.setState({ values: cloneDeep(response.data), solutionValues: response.data })
             })
