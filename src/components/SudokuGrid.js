@@ -15,6 +15,7 @@ class SudokuGrid extends Component {
             errorMsg: "",
         }
         this.correctTableValues = this.correctTableValues.bind(this)
+        this.resetTableValues = this.resetTableValues.bind(this)
         this.changeVal = this.changeVal.bind(this)
     }
 
@@ -50,15 +51,29 @@ class SudokuGrid extends Component {
     correctTableValues() {
         // Given the current state of the grid fetch the solution from the endpoint and update the grid + known solutuion
         // TODO: known solutuion i.e. solutionValues seems unnecessary. Either load it when creating the puzzle or remove it
-        const wrongSolutionResponse = "No Solution found! Check the values filled in so far."
+        const errorResponse = "No Solution found! Check the values filled in so far."
         axios.post("https://ambardas.nl:8000/solve", this.state.values)
             .then(response => {
                 this.setState({ values: cloneDeep(response.data), solutionValues: response.data })
             })
             .catch(error => {
                 console.log(error)
-                this.setState({ errorMsg: wrongSolutionResponse })
+                if (error.response.status === 400) {
+                    console.log(error.response.data)
+                    console.log(error.response.status)
+                    this.setState({ errorMsg: `${error.response.data.detail}. \n Maybe reset the grid and try again.` })
+                } else {
+                    this.setState({
+                        values: cloneDeep(this.state.originalValues),
+                        errorMsg: errorResponse
+                    })
+                }
             })
+    }
+
+    resetTableValues() {
+        // Given the current state of the grid, reset it to the original problem.
+        this.setState({ values: cloneDeep(this.state.originalValues) })
     }
 
     render() {
@@ -80,7 +95,7 @@ class SudokuGrid extends Component {
             {
                 errorMsg ? <div className={styles.alert}>{errorMsg}</div> : null
             }
-            <UserButtons correctTableValues={this.correctTableValues} />
+            <UserButtons correctTableValues={this.correctTableValues} resetTableValues={this.resetTableValues} />
         </React.Fragment>
     }
 }
