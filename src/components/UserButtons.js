@@ -2,7 +2,10 @@ import React from 'react'
 
 function UserButtons(props) {
   return (
-    <button onClick={() => props.correctTableValues()}>Fill correct values</button>
+    <div>
+      <button onClick={() => props.correctTableValues()}>Fill correct values</button><br/>
+      <button onClick={() => props.resetTableValues()}>Reset Grid</button>
+    </div>
   )
 }
 

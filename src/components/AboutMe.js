@@ -7,8 +7,8 @@ function AboutMe() {
         <div>
             <h3>Backend API</h3>
             <ul>
-                <li>Endpoint <a href="http://ambardas.nl:8000">http://ambardas.nl:8000</a></li>
-                <li>API docs <a href="http://ambardas.nl:8000/docs">http://ambardas.nl:8000/docs</a></li>
+                <li>Endpoint <a href="https://ambardas.nl:8000">https://ambardas.nl:8000</a></li>
+                <li>API docs <a href="https://ambardas.nl:8000/docs">https://ambardas.nl:8000/docs</a></li>
             </ul>
             <h3>Source</h3>
             <ul>
