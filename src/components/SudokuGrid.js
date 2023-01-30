@@ -20,12 +20,12 @@ class SudokuGrid extends Component {
     }
 
     componentDidMount() {
-        // This is to prevent re-render. WIthout it, the grid will load twice (with new version of grid)
+        // This is to prevent re-render. Without it, the grid will load twice (with new version of grid)
         if (this.first) { return }
         this.first = true
 
-        // Use axios to load a new puzzle(hardocded to easy-settings by default)
-        axios.get("https://ambardas.nl:8000/create/easy")
+        // Use axios to load a new puzzle(hardcoded to difficult setting by default)
+        axios.get("https://ambardas.nl:8000/create/difficult")
             .then(response => {
                 this.setState({ values: response.data, originalValues: cloneDeep(response.data) })
             })
