@@ -25,3 +25,5 @@ yarn-error.log*
 # tarballs
 *.tar.gz
 *.tar
+
+.idea/
